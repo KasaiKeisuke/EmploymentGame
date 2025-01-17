@@ -25,7 +25,8 @@ public:
 
 private:
 	void Move();															// ˆÚ“®ˆ—
-
+	void Attack();															// UŒ‚ˆ—
+	
 	int m_nType;															// í—Ş
 	bool m_bMoveHorizon;													// “G‚Ì‰¡ˆÚ“®
 	bool m_bMoveVertical;													// “G‚ÌcˆÚ“®
