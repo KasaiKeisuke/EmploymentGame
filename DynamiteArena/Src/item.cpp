@@ -8,6 +8,7 @@
 // include
 #include "item.h"
 #include "manager.h"
+#include "explosion.h"
 #include <stdio.h>
 
 // 静的メンバ変数初期化
@@ -66,10 +67,38 @@ void CItem::Uninit()
 //*******************************************************************************************************************************************
 void CItem::Update()
 {
+	D3DXVECTOR3 CurrentPos = GetPos();
+
 	if (!m_bDeath)
 	{
 		// 3Dオブジェクトの更新処理
 		CObject3D::Update();
+
+		for (int nCntPriority = 0; nCntPriority < DRAW_PRIORITY; nCntPriority++)
+		{
+			for (int nCntObj = 0; nCntObj < MAX_OBJECT3D; nCntObj++)
+			{
+				// オブジェクト情報取得
+				CObject* pObj = nullptr;
+
+				pObj = CObject::GetObjectInfo(nCntPriority, nCntObj);
+
+				if (pObj != nullptr)
+				{
+					// 種類の取得
+					CObject::OBJECTTYPE type = pObj->GetType();
+
+					if (type == CObject::OBJECTTYPE::TYPE_EXPLOSION)
+					{
+						CExplosion* pExplosion = (CExplosion*)pObj;
+
+						m_bHit = pExplosion->CollisionExplosion(&CurrentPos, &CurrentPos, D3DXVECTOR3(m_fWidth, 0.0f, m_fDepth), CObject::OBJECTTYPE::TYPE_ITEM);
+					}
+
+				}
+
+			}
+		}
 	}
 
 	if (m_bHit)

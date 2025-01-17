@@ -157,10 +157,10 @@ void CBullet::Move()
 	}
 	else
 	{
-		//// ‚»‚ê‚¼‚ê‚ÌŽ²‚ÌˆÚ“®
-		//CurrentPos.x += m_Move.x;
-		//CurrentPos.y += m_Move.y;
-		//CurrentPos.z += m_Move.z;
+		// ‚»‚ê‚¼‚ê‚ÌŽ²‚ÌˆÚ“®
+		CurrentPos.x += m_Move.x;
+		CurrentPos.y += m_Move.y;
+		CurrentPos.z += m_Move.z;
 
 	}
 

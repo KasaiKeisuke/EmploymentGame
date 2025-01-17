@@ -174,15 +174,23 @@ bool CExplosion::CollisionExplosion(D3DXVECTOR3* pos, D3DXVECTOR3* posOld, D3DXV
 		}
 		break;
 	case CObject::OBJECTTYPE::TYPE_ENEMY:
-		if (pos->z + size.z / 2 >= CurrentPos.z - CurrentSize.z / 2 &&	// ブロックの奥と爆発の手前
-			pos->z - size.z / 2 <= CurrentPos.z + CurrentSize.z / 2 &&	// ブロックの手前と爆発の奥
-			pos->x - size.x / 2 <= CurrentPos.x + CurrentSize.x / 2 &&	// ブロックの左端と爆発の右端
-			pos->x + size.x / 2 >= CurrentPos.x - CurrentSize.x / 2)	// ブロックの右端と爆発の左端
+		if (pos->z + size.z / 2 >= CurrentPos.z - CurrentSize.z / 2 &&	// 敵の奥と爆発の手前
+			pos->z - size.z / 2 <= CurrentPos.z + CurrentSize.z / 2 &&	// 敵の手前と爆発の奥
+			pos->x - size.x / 2 <= CurrentPos.x + CurrentSize.x / 2 &&	// 敵の左端と爆発の右端
+			pos->x + size.x / 2 >= CurrentPos.x - CurrentSize.x / 2)	// 敵の右端と爆発の左端
 		{// 敵の矩形が爆発の矩形の中にいるか
 			bHit = true;
 		}
 		break;
-
+	case CObject::OBJECTTYPE::TYPE_ITEM:
+		if (pos->z + size.z / 2 >= CurrentPos.z - CurrentSize.z / 2 &&	// アイテムの奥と爆発の手前
+			pos->z - size.z / 2 <= CurrentPos.z + CurrentSize.z / 2 &&	// アイテムの手前と爆発の奥
+			pos->x - size.x / 2 <= CurrentPos.x + CurrentSize.x / 2 &&	// アイテムの左端と爆発の右端
+			pos->x + size.x / 2 >= CurrentPos.x - CurrentSize.x / 2)	// アイテムの右端と爆発の左端
+		{// アイテムの矩形が爆発の矩形の中にいるか
+			bHit = true;
+		}
+		break;
 	}
 
 	return bHit;
