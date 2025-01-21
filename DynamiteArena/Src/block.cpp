@@ -9,6 +9,7 @@
 #include "block.h"
 #include "explosion.h"
 #include <stdio.h>
+#include <random>
 
 //*******************************************************************************************************************************************
 // コンストラクタ
@@ -95,6 +96,8 @@ void CBlock::Update()
 				{
 					if (m_bDeath)
 					{
+						DecideToPlaceItem(CurrentPos);	// アイテムを配置するかどうか
+
 						CBlock::Uninit();
 					}
 				}
@@ -362,4 +365,28 @@ void CBlock::SetBlockType(BLOCKTYPE type)
 CBlock::BLOCKTYPE CBlock::GetType()
 {
 	return m_Type;
+}
+
+//*******************************************************************************************************************************************
+// アイテムを配置するかどうか
+//*******************************************************************************************************************************************
+void CBlock::DecideToPlaceItem(D3DXVECTOR3 pos)
+{
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_int_distribution<> rand(1, 10);
+
+	int nRand = rand(mt);
+
+	if (nRand % 5 == 0)
+	{
+		std::random_device rnd;							// 非決定的な乱数生成器でシード生成機を生成
+		std::mt19937 mt(rnd());							//  メルセンヌツイスターの32ビット版、引数は初期シード
+		std::uniform_int_distribution<> rand(1, 2);    // 開始の数値から終わりの数値の 範囲の一様乱数	
+
+		int nKind = rand(mt);
+
+		CItem::Create(D3DXVECTOR3(pos.x, 0.1f, pos.z), 15.0f, 0.0f, 15.0f, nKind);
+
+	}
 }

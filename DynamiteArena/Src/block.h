@@ -37,6 +37,8 @@ public:
 	void SetBlockType(BLOCKTYPE type);															// ブロックの種類設定
 	BLOCKTYPE GetType();																		// ブロックの種類取得
 
+	void DecideToPlaceItem(D3DXVECTOR3 pos);													// アイテムを配置するかどうか
+
 private:
 	bool m_bDeath;																				// 破壊されたかどうか
 	int m_nLife;																				// 耐久力
@@ -47,4 +49,5 @@ private:
 };
 
 static const float ADJUST_HIT = 5.0f;		// 当たり判定調整用
+static const float ITEM_SIZE = 15.0f;		// アイテムの大きさ
 #endif

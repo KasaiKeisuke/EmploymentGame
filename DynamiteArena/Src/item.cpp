@@ -9,6 +9,7 @@
 #include "item.h"
 #include "manager.h"
 #include "explosion.h"
+#include "block.h"
 #include <stdio.h>
 
 // Ã“Iƒƒ“ƒo•Ï”‰Šú‰»

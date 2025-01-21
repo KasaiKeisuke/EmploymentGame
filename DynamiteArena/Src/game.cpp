@@ -29,7 +29,6 @@
 #include "wall.h"
 #include "item.h"
 #include "enemy.h"
-#include "misobon.h"
 
 //*******************************************************************************************************************************************
 // コンストラクタ
@@ -87,7 +86,7 @@ HRESULT CGame::Init()
 	CWall::Load();
 
 	// アイテムのロード処理
-	CItem::Load();
+	//CItem::Load();
 
 	// 敵のロード処理
 	CEnemy::Load();
@@ -115,9 +114,6 @@ HRESULT CGame::Init()
 
 	// ゴールマーカーの生成
 	CGoal::Create(D3DXVECTOR3(180.0f, 0.0f, 150.0f));
-
-	// みそボンの生成
-	CMisobon::Create(D3DXVECTOR3(0.0f, 35.0f, -175.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), 0);
 
 	//*****************************
 	// テスト配置
