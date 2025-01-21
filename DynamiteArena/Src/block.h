@@ -46,6 +46,8 @@ private:
 
 	static const int BLOCK_SIZE = 15;															// ブロックの大きさ(半径)
 	static const int PLAYER_SIZE = 20;															// プレイヤーの大きさ(直径)
+	static const int ITEM_KIND = 2;																// アイテムの種類
+	static const int MAX_PARSENT = 10;
 };
 
 static const float ADJUST_HIT = 5.0f;		// 当たり判定調整用
