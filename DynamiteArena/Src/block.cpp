@@ -391,7 +391,7 @@ void CBlock::DecideToPlaceItem(D3DXVECTOR3 pos)
 
 		std::random_device rnd;  // 非決定的な乱数生成器
 		std::mt19937 mt(rnd());  // メルセンヌツイスターの乱数生成器
-		std::uniform_int_distribution<> rand(1, 2);  // 1か2のランダム
+		std::uniform_int_distribution<> rand(1, MAX_NUM);  // 1か2のランダム
 
 		int nRand = rand(mt);
 

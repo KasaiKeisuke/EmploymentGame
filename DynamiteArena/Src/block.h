@@ -51,6 +51,7 @@ private:
 	static const int PLAYER_SIZE = 20;															// プレイヤーの大きさ(直径)
 	static const int ITEM_KIND = 2;																// アイテムの種類
 	static const int MAX_ITEM = 8;																// アイテムの最大個数
+	static const int MAX_NUM = 2;																// ランダムで生成する最大の数値 
 };
 
 static const float ADJUST_HIT = 5.0f;		// 当たり判定調整用

@@ -61,8 +61,8 @@ void CTutorial::Update()
 
 	if (m_InputKeyboard != nullptr && m_InputJoypad != nullptr)
 	{
-		if (m_InputKeyboard->GetTrigger(DIK_RETURN) || m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_A))
-		{// ENTERキー or Aボタンが押されたらゲーム画面に移行
+		if (m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_A))
+		{// Aボタンが押されたらゲーム画面に移行
 			manager.SetMode(CScene::MODE::MODE_GAME);
 		}
 	}
