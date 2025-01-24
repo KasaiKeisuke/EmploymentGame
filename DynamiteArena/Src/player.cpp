@@ -239,28 +239,6 @@ void CPlayer::Move()
 
 	float fLengthMove = 0.0f;								// プレイヤーの移動速度
 
-	//******************************************************
-	// キーボード移動
-	//******************************************************
-
-	if (m_InputKeyboard->GetPress(DIK_W))
-	{// 前進
-		m_Move.z = 1.0f;
-	}
-	else if (m_InputKeyboard->GetPress(DIK_S))
-	{// 後退
-		m_Move.z = -1.0f;
-	}
-
-	if (m_InputKeyboard->GetPress(DIK_A))
-	{// 左移動
-		m_Move.x = -1.0f;
-	}
-	else if (m_InputKeyboard->GetPress(DIK_D))
-	{
-		m_Move.x = 1.0f;
-	}
-
 	//**************************************
 	// ジョイスティックの移動
 	//**************************************
@@ -428,7 +406,7 @@ void CPlayer::Attack()
 
 	if (!m_bHasFired || m_nCoolCount >= COOLDOWN)
 	{// クールダウン時間を経過したら
-		if (m_InputKeyboard->GetRepeat(DIK_SPACE) || m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_B))
+		if (m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_B))
 		{// SPACE(攻撃)キーが押された
 			CBullet::Create(D3DXVECTOR3(CurrentPos.x,1.0f,CurrentPos.z), D3DXVECTOR3(sinf(CurrentRot.y + D3DX_PI) * 5.0f, 0.0f, cosf(CurrentRot.y + D3DX_PI) * 5.0f));
 		

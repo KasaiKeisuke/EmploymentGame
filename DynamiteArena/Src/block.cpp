@@ -380,30 +380,33 @@ CBlock::BLOCKTYPE CBlock::GetType()
 //*******************************************************************************************************************************************
 void CBlock::DecideToPlaceItem(D3DXVECTOR3 pos)
 {
-	int nNumAppearItem = m_pItemManager->GetNumItem();	// 出現させたアイテムの個数取得
-
-	if (nNumAppearItem >= 8)
-	{// 一定個数出現したら処理を通さない
-		return;
-	}
-
-	std::random_device rnd;  // 非決定的な乱数生成器
-	std::mt19937 mt(rnd());  // メルセンヌツイスターの乱数生成器
-	std::uniform_int_distribution<> rand(1, 2);  // 1か2のランダム
-
-	int nRand = rand(mt);
-
-	if (nRand == 1)
+	if (m_pItemManager != nullptr)
 	{
-		nNumAppearItem++;
+		int nNumAppearItem = m_pItemManager->GetNumItem();	// 出現させたアイテムの個数取得
 
-		// アイテムの種類を決定
-		std::uniform_int_distribution<> itemRand(1, ITEM_KIND);  // アイテムの種類のランダム
-		int nKind = itemRand(mt);  // アイテムの種類
+		if (nNumAppearItem >= MAX_ITEM)
+		{// 一定個数出現したら処理を通さない
+			return;
+		}
 
-		// アイテムを作成
-		CItem::Create(D3DXVECTOR3(pos.x, 0.1f, pos.z), ITEM_SIZE, 0.0f, ITEM_SIZE, nKind);
+		std::random_device rnd;  // 非決定的な乱数生成器
+		std::mt19937 mt(rnd());  // メルセンヌツイスターの乱数生成器
+		std::uniform_int_distribution<> rand(1, 2);  // 1か2のランダム
 
-		m_pItemManager->SetNumItem(nNumAppearItem);
+		int nRand = rand(mt);
+
+		if (nRand == 1)
+		{
+			nNumAppearItem++;
+
+			// アイテムの種類を決定
+			std::uniform_int_distribution<> itemRand(1, ITEM_KIND);  // アイテムの種類のランダム
+			int nKind = itemRand(mt);  // アイテムの種類
+
+			// アイテムを作成
+			CItem::Create(D3DXVECTOR3(pos.x, 0.1f, pos.z), ITEM_SIZE, 0.0f, ITEM_SIZE, nKind);
+
+			m_pItemManager->SetNumItem(nNumAppearItem);
+		}
 	}
 }
