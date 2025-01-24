@@ -39,6 +39,7 @@ CGame::CGame()
 	m_InputJoypad = nullptr;	// ジョイパッドのポインタ
 	m_pParamManager = nullptr;	// パラメーター管理クラスのポインタ
 	m_pGameManager = nullptr;	// ゲームマネージャークラスのポインタ
+	m_pItemManager = nullptr;	// アイテムマネージャークラスのポインタ
 	m_nTime = 0;
 }
 
@@ -51,6 +52,7 @@ CGame::~CGame()
 	m_InputJoypad = nullptr;	// ジョイパッドのポインタ
 	m_pParamManager = nullptr;	// パラメーター管理クラスのポインタ
 	m_pGameManager = nullptr;	// ゲームマネージャークラスのポインタ
+	m_pItemManager = nullptr;	// アイテムマネージャークラスのポインタ
 	m_nTime = 0;
 }
 
@@ -70,6 +72,8 @@ HRESULT CGame::Init()
 
 	m_pGameManager = manager.GetGameManager();
 
+	m_pItemManager = manager.GetItemManager();
+
 	// 警告表示Uiのテクスチャロード
 	CCaveat::Load();
 
@@ -84,9 +88,6 @@ HRESULT CGame::Init()
 
 	// 壁のロード処理
 	CWall::Load();
-
-	// アイテムのロード処理
-	//CItem::Load();
 
 	// 敵のロード処理
 	CEnemy::Load();
@@ -106,6 +107,12 @@ HRESULT CGame::Init()
 		m_pGameManager->Init();
 	}
 
+	// アイテムマネージャークラスの初期化処理
+	if (m_pItemManager != nullptr)
+	{
+		m_pItemManager->Init();
+	}
+
 	// プレイヤーの生成
 	CPlayer::Create(D3DXVECTOR3(-180.0f, 12.0f, -150.0f));
 
@@ -115,10 +122,6 @@ HRESULT CGame::Init()
 	// ゴールマーカーの生成
 	CGoal::Create(D3DXVECTOR3(180.0f, 0.0f, 150.0f));
 
-	//*****************************
-	// テスト配置
-	//*****************************
-	//CWall::Create(D3DXVECTOR3(-150.0f, 13.0f, 130.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), 1);
 
 	// ゲーム2周目以降カメラの向きがバグらないように初期化
 	manager.GetCamera()->SetRot(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
@@ -163,6 +166,12 @@ void CGame::Uninit()
 	{
 		m_pGameManager->Uninit();
 	}
+
+	// アイテムマネージャークラスの終了処理
+	if (m_pItemManager != nullptr)
+	{
+		m_pItemManager->Uninit();
+	}
 }
 
 //*******************************************************************************************************************************************
@@ -192,20 +201,27 @@ void CGame::Update()
 		{
 			CTimer::Sub(1);
 		}
-	}
 
-	//パラメーター管理クラスの更新処理
-	if (m_pParamManager != nullptr)
-	{
-		m_pParamManager->Update();
-	}
 
-	// ゲームマネージャークラスの更新処理
-	if (m_pGameManager != nullptr)
-	{
-		m_pGameManager->Update();
-	}
+		//パラメーター管理クラスの更新処理
+		if (m_pParamManager != nullptr)
+		{
+			m_pParamManager->Update();
+		}
 
+		// ゲームマネージャークラスの更新処理
+		if (m_pGameManager != nullptr)
+		{
+			m_pGameManager->Update();
+		}
+
+		// アイテムマネージャークラスの更新処理
+		if (m_pItemManager != nullptr)
+		{
+			m_pItemManager->Update();
+		}
+
+	}
 
 	if (nTime <= 0)
 	{

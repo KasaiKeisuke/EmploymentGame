@@ -22,6 +22,7 @@ CObject3D::CObject3D(int nPriority):CObject(nPriority)
 	m_pTexture = nullptr;					// テクスチャのポインタ
 	m_Pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 位置
 	m_Rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 向き
+	m_Col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);	// 色
 	m_mtxWorld = {};						// ワールドマトリックス
 	m_fWidth = 0.0f;						// 幅
 	m_fHeight = 0.0f;						// 高さ

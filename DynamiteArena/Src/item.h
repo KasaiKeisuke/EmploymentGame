@@ -51,6 +51,8 @@ private:
 
 	bool m_bHit;																					// 当たったかどうか
 	bool m_bDeath;																					// 使用されているかどうか
+
+	int m_nLag;																						// アイテムが生成されてから当たり判定を発動させるまでの時間
 };
 static const float ITEM_WIDTH = 15.0f;																// アイテム用ポリゴンの幅
 static const float ITEM_HEIGHT = 0.0f;																// アイテム用ポリゴンの高さ

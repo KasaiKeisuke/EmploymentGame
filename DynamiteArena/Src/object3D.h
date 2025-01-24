@@ -46,6 +46,7 @@ private:
 	LPDIRECT3DTEXTURE9 m_pTexture;															// テクスチャのポインタ
 	D3DXVECTOR3 m_Pos;																		// 位置
 	D3DXVECTOR3 m_Rot;																		// 向き
+	D3DXCOLOR m_Col;																		// 色
 	D3DXMATRIX m_mtxWorld;																	// ワールドマトリックス
 
 

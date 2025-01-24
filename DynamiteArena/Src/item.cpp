@@ -26,6 +26,8 @@ CItem::CItem(int nPriority):CObject3D(nPriority)
 
 	m_bHit = false;		// 当たったかどうか
 	m_bDeath = false;	// 使用されているかどうか
+
+	m_nLag = 0;			// アイテムが生成されてから当たり判定を発動させるまでの時間
 }
 
 //*******************************************************************************************************************************************
@@ -33,7 +35,14 @@ CItem::CItem(int nPriority):CObject3D(nPriority)
 //*******************************************************************************************************************************************
 CItem::~CItem()
 {
+	m_Type = TYPE_NONE;
+	m_fWidth = 0.0f;	// 幅
+	m_fDepth = 0.0f;	// 奥行
 
+	m_bHit = false;		// 当たったかどうか
+	m_bDeath = false;	// 使用されているかどうか
+
+	m_nLag = 0;
 }
 
 //*******************************************************************************************************************************************
@@ -43,7 +52,6 @@ HRESULT CItem::Init()
 {
 	// シングルトンインスタンスの取得
 	CManager& manager = CManager::GetInstance();
-
 
 	// 3Dオブジェクトの初期化処理
 	CObject3D::Init();
@@ -58,9 +66,6 @@ void CItem::Uninit()
 {
 	// 3Dオブジェクトの終了処理
 	CObject3D::Uninit();
-
-	// アイテムの破棄
-	Release();
 }
 
 //*******************************************************************************************************************************************
@@ -69,6 +74,8 @@ void CItem::Uninit()
 void CItem::Update()
 {
 	D3DXVECTOR3 CurrentPos = GetPos();
+
+	m_nLag--;
 
 	if (!m_bDeath)
 	{
@@ -89,11 +96,16 @@ void CItem::Update()
 					// 種類の取得
 					CObject::OBJECTTYPE type = pObj->GetType();
 
-					if (type == CObject::OBJECTTYPE::TYPE_EXPLOSION)
+					if (type == CObject::OBJECTTYPE::TYPE_EXPLOSION && m_nLag <= 0)
 					{
 						CExplosion* pExplosion = (CExplosion*)pObj;
 
 						m_bHit = pExplosion->CollisionExplosion(&CurrentPos, &CurrentPos, D3DXVECTOR3(m_fWidth, 0.0f, m_fDepth), CObject::OBJECTTYPE::TYPE_ITEM);
+					
+						if (m_bHit)
+						{
+							break;
+						}
 					}
 
 				}
@@ -158,6 +170,8 @@ CItem* CItem::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, float fDepth,
 	pItem->m_fWidth = fWidth;	// 変数に格納
 
 	pItem->m_fDepth = fDepth;	// 変数に格納
+
+	pItem->m_nLag = 120;		// アイテムが生成されてから当たり判定を発動させるまでの時間
 
 	pItem->SetType(CObject::OBJECTTYPE::TYPE_ITEM);
 

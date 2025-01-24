@@ -9,6 +9,7 @@
 #include "block.h"
 #include "explosion.h"
 #include "item.h"
+#include "manager.h"
 #include <stdio.h>
 #include <random>
 
@@ -19,7 +20,7 @@ CBlock::CBlock(int nPriority):CObjectX(nPriority),
 m_bDeath(false),
 m_nLife(0)
 {
-
+	m_pItemManager = nullptr;	// アイテムマネージャークラスのポインタ
 }
 
 //*******************************************************************************************************************************************
@@ -28,6 +29,7 @@ m_nLife(0)
 CBlock::~CBlock()
 {
 	m_bDeath = false;
+	m_pItemManager = nullptr;	// アイテムマネージャークラスのポインタ
 }
 
 //*******************************************************************************************************************************************
@@ -35,6 +37,11 @@ CBlock::~CBlock()
 //*******************************************************************************************************************************************
 HRESULT CBlock::Init()
 {
+	// シングルトンインスタンスの取得
+	CManager& manager = CManager::GetInstance();
+
+	m_pItemManager = manager.GetItemManager();
+
 	// Xファイルオブジェクトの初期化処理
 	CObjectX::Init();
 
@@ -373,21 +380,30 @@ CBlock::BLOCKTYPE CBlock::GetType()
 //*******************************************************************************************************************************************
 void CBlock::DecideToPlaceItem(D3DXVECTOR3 pos)
 {
-	std::random_device rnd;
-	std::mt19937 mt(rnd());
-	std::uniform_int_distribution<> rand(1, MAX_PARSENT);
+	int nNumAppearItem = m_pItemManager->GetNumItem();	// 出現させたアイテムの個数取得
+
+	if (nNumAppearItem >= 8)
+	{// 一定個数出現したら処理を通さない
+		return;
+	}
+
+	std::random_device rnd;  // 非決定的な乱数生成器
+	std::mt19937 mt(rnd());  // メルセンヌツイスターの乱数生成器
+	std::uniform_int_distribution<> rand(1, 2);  // 1か2のランダム
 
 	int nRand = rand(mt);
 
-	if (nRand % APPEAR_PERSENT == 0)
+	if (nRand == 1)
 	{
-		std::random_device rnd;									// 非決定的な乱数生成器でシード生成機を生成
-		std::mt19937 mt(rnd());									//  メルセンヌツイスターの32ビット版、引数は初期シード
-		std::uniform_int_distribution<> rand(1, ITEM_KIND);		// 開始の数値から終わりの数値の 範囲の一様乱数	
+		nNumAppearItem++;
 
-		int nKind = rand(mt);
+		// アイテムの種類を決定
+		std::uniform_int_distribution<> itemRand(1, ITEM_KIND);  // アイテムの種類のランダム
+		int nKind = itemRand(mt);  // アイテムの種類
 
+		// アイテムを作成
 		CItem::Create(D3DXVECTOR3(pos.x, 0.1f, pos.z), ITEM_SIZE, 0.0f, ITEM_SIZE, nKind);
 
+		m_pItemManager->SetNumItem(nNumAppearItem);
 	}
 }

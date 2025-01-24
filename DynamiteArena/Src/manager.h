@@ -17,6 +17,7 @@
 #include "scene.h"
 #include "PlayerParam.h"
 #include "GameManager.h"
+#include "ItemManager.h"
 
 // マネージャークラスの定義
 class CManager
@@ -41,6 +42,7 @@ public:
 	CLight* GetLight();											// ライトの取得処理
 	CParamManager* GetParamManager();							// パラメーター管理クラスのポインタ取得
 	CGameManager* GetGameManager();								// ゲームマネージャー取得処理
+	CItemManager* GetItemManager();								// アイテムマネージャークラスのポインタ取得
 
 	void SetMode(CScene::MODE mode);							// モード設定処理
 
@@ -62,6 +64,7 @@ private:
 	CScene* m_pScene;											// シーンのポインタ
 	CParamManager* m_pParamManager;								// パラメーター管理クラスのポインタ		
 	CGameManager* m_pGameManager;								// ゲームマネージャークラスのポインタ
+	CItemManager* m_pItemManager;								// アイテムマネージャークラスのポインタ
 
 	bool m_bGoal;												// ゴール判定用フラグ
 

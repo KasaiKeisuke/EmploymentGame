@@ -10,6 +10,7 @@
 
 // include
 #include "objectX.h"
+#include "ItemManager.h"
 
 // ブロッククラスの定義
 class CBlock : public CObjectX
@@ -40,6 +41,8 @@ public:
 	void DecideToPlaceItem(D3DXVECTOR3 pos);													// アイテムを配置するかどうか
 
 private:
+	CItemManager* m_pItemManager;																// アイテムマネージャークラスのポインタ
+
 	bool m_bDeath;																				// 破壊されたかどうか
 	int m_nLife;																				// 耐久力
 	BLOCKTYPE m_Type;																			// ブロックの種類
@@ -48,6 +51,8 @@ private:
 	static const int PLAYER_SIZE = 20;															// プレイヤーの大きさ(直径)
 	static const int ITEM_KIND = 2;																// アイテムの種類
 	static const int MAX_PARSENT = 10;
+	static const int APPEAR_PERSENT = 5;														// アイテムの出現確立
+
 };
 
 static const float ADJUST_HIT = 5.0f;		// 当たり判定調整用

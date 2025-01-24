@@ -15,6 +15,7 @@
 #include "GameManager.h"
 #include "timer.h"
 #include "score.h"
+#include "ItemManager.h"
 
 // ゲーム画面クラスの定義
 class CGame : public CScene
@@ -32,6 +33,7 @@ private:
 	CInputJoypad* m_InputJoypad;		// ジョイパッドのポインタ
 	CParamManager* m_pParamManager;		// パラメーター管理クラスのポインタ
 	CGameManager* m_pGameManager;		// ゲームマネージャークラスのポインタ
+	CItemManager* m_pItemManager;		// アイテムマネージャークラスのポインタ
 
 	static const int FIELD_SIZE = 500;	// 床の大きさ
 

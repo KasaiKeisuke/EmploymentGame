@@ -15,7 +15,7 @@
 class CCaveat : public CObject3D
 {
 public:
-	CCaveat(int nPriority = 3);																// コンストラクタ
+	CCaveat(int nPriority = 4);																// コンストラクタ
 	~CCaveat()override;																		// デストラクタ
 	HRESULT Init()override;																	// 初期化処理
 	void Uninit()override;																	// 終了処理
