@@ -26,5 +26,9 @@ public:
 private:
 	CInputKeyboard* m_InputKeyboard;	// キーボードのポインタ
 	CInputJoypad* m_InputJoypad;		// ジョイパッドのポインタ
+
+	int m_nCnt;							// 画面遷移させるまでの時間
+
+	static const int MAX_LAG = 5;		// 画面遷移させるタイミング
 };
 #endif

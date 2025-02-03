@@ -57,16 +57,6 @@ void CTitle::Uninit()
 //*******************************************************************************************************************************************
 void CTitle::Update()
 {
-	// シングルトンインスタンスの取得
-	CManager& manager = CManager::GetInstance();
-
-	if (m_InputKeyboard != nullptr && m_InputJoypad != nullptr)
-	{
-		if (m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_A))
-		{// Aボタンが押されたらゲーム画面に移行
-			manager.SetMode(CScene::MODE::MODE_TUTORIAL);
-		}
-	}
 
 }
 

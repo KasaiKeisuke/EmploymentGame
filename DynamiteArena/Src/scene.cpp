@@ -12,6 +12,9 @@
 #include "game.h"
 #include "result.h"
 #include "bg.h"
+#include "TitleLogo.h"
+#include "cursor.h"
+#include "menu.h"
 
 #include "manager.h"
 
@@ -77,6 +80,13 @@ CScene* CScene::Create(MODE mode)
 
 		CBg::Create(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, CBg::TEXTYPE::TYPE_TITLE);
 
+		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_TUTORIAL);
+
+		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_GAME);
+
+		CTitleLogo::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 370.0f, 0.0f), 500.0f, 100.0f);
+
+		CCursor::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f - 250.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 100.0f, 100.0f);
 		break;
 	case MODE_TUTORIAL:
 		pScene = new CTutorial();

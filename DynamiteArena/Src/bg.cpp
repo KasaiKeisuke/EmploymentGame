@@ -87,7 +87,7 @@ CBg* CBg::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTYPE type)
 		{
 		case TYPE_TITLE:
 			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title000.png", &pBg->m_pTexture);
+			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
 			
 			break;
 		case TYPE_TUTORIAL:

@@ -105,65 +105,62 @@ void CObject2D::Uninit()
 //*******************************************************************************************************************************************
 void CObject2D::Update()
 {
-	VERTEX_2D* pVtx;	// 頂点情報のポインタ
-
-	switch (m_Type)
+	if (m_pVtxBuff != nullptr)
 	{
-	case CObject2D::POLYGONTYPE::POLYGON_NORMAL:
-		// 頂点バッファをロックし、頂点情報へのポインタを取得
-		m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
-
-		// 頂点座標の設定
-		pVtx[0].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
-		pVtx[1].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
-		pVtx[2].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
-		pVtx[3].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
-
-		// 頂点カラーの設定
-		pVtx[0].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[1].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[2].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[3].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-
-		// テクスチャ座標の設定
-		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
-		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
-		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
-		pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
-
-		// 頂点バッファをアンロックする
-		m_pVtxBuff->Unlock();
-
-		break;
-	case CObject2D::POLYGONTYPE::POLYGON_NUMBER:
-		break;
-	case CObject2D::POLYGONTYPE::POLYGON_BLINK:
+		VERTEX_2D* pVtx;	// 頂点情報のポインタ
 
 		// 頂点バッファをロックし、頂点情報へのポインタを取得
 		m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
 
-		// 頂点座標の設定
-		pVtx[0].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
-		pVtx[1].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
-		pVtx[2].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
-		pVtx[3].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
+		switch (m_Type)
+		{
+		case CObject2D::POLYGONTYPE::POLYGON_NORMAL:
+			// 頂点座標の設定
+			pVtx[0].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
+			pVtx[1].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
+			pVtx[2].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
+			pVtx[3].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
 
-		// 頂点カラーの設定
-		pVtx[0].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[1].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[2].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
-		pVtx[3].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			// 頂点カラーの設定
+			pVtx[0].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[1].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[2].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[3].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
 
-		// テクスチャ座標の設定
-		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
-		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
-		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
-		pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+			// テクスチャ座標の設定
+			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+			pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+			break;
+		case CObject2D::POLYGONTYPE::POLYGON_NUMBER:
+			break;
+		case CObject2D::POLYGONTYPE::POLYGON_BLINK:
+
+			// 頂点座標の設定
+			pVtx[0].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
+			pVtx[1].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y - m_fHeight, m_Pos.z);
+			pVtx[2].pos = D3DXVECTOR3(m_Pos.x - m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
+			pVtx[3].pos = D3DXVECTOR3(m_Pos.x + m_fWidth, m_Pos.y + m_fHeight, m_Pos.z);
+
+			// 頂点カラーの設定
+			pVtx[0].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[1].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[2].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+			pVtx[3].col = D3DXCOLOR(m_Col.r, m_Col.g, m_Col.b, m_Col.a);
+
+			// テクスチャ座標の設定
+			pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+			pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+			pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+			pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+			break;
+		}
 
 		// 頂点バッファをアンロックする
 		m_pVtxBuff->Unlock();
-
-		break;
 	}
 }
 
@@ -276,6 +273,21 @@ void CObject2D::SetVtxAnimPolygon(float fWidth, float fHeight, float TexPos)
 	m_pVtxBuff->Unlock();
 
 }
+//*******************************************************************************************************************************************
+// 位置設定処理
+//*******************************************************************************************************************************************
+void CObject2D::SetPos(D3DXVECTOR3 pos)
+{
+	m_Pos = pos;
+}
+
+//*******************************************************************************************************************************************
+// 位置取得処理
+//*******************************************************************************************************************************************
+D3DXVECTOR3 CObject2D::GetPos()
+{
+	return m_Pos;
+}
 
 //*******************************************************************************************************************************************
 // ポリゴンの頂点設定処理
@@ -291,4 +303,28 @@ void CObject2D::SetColor(D3DXCOLOR col)
 D3DXCOLOR CObject2D::GetColor()
 {
 	return m_Col;
+}
+
+// ポリゴンのサイズ設定処理
+//*******************************************************************************************************************************************
+void CObject2D::SetSize(float fWidth, float fHeight)
+{
+	m_fWidth = fWidth;
+	m_fHeight = fHeight;
+}
+
+//*******************************************************************************************************************************************
+// ポリゴンの幅取得処理
+//*******************************************************************************************************************************************
+float CObject2D::GetWidth()
+{
+	return m_fWidth;
+}
+
+//*******************************************************************************************************************************************
+// ポリゴンの高さ取得処理
+//*******************************************************************************************************************************************
+float CObject2D::GetHeight()
+{
+	return m_fHeight;
 }

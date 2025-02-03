@@ -42,8 +42,15 @@ public:
 
 	void SetVtxAnimPolygon(float fWidth, float fHeight, float TexPos);		// 頂点設定処理
 
+	void SetPos(D3DXVECTOR3 pos);											// 位置設定処理
+	D3DXVECTOR3 GetPos();													// 位置取得処理
+
 	void SetColor(D3DXCOLOR col);											// 色設定処理
 	D3DXCOLOR GetColor();													// 色取得処理
+
+	void SetSize(float fWidth, float fHeight);								// ポリゴンのサイズ設定
+	float GetWidth();														// ポリゴンの幅取得
+	float GetHeight();														// ポリゴンの高さ取得
 
 	const static int MAX_OBJECT = 128;										// オブジェクト最大数
 
