@@ -13,7 +13,10 @@
 //*******************************************************************************************************************************************
 CGuid::CGuid(int nPriority):CObject2D(nPriority)
 {
-	m_pTexture = nullptr;		// テクスチャのポインタ
+	m_pTexture = nullptr;					// テクスチャのポインタ
+	m_Type = TEXTURETYPE::TYPE_NONE;		// テクスチャの種類
+	m_bAnimation = false;					// アニメーション用フラグ(trueの時にα値を上げる)
+
 }
 
 //*******************************************************************************************************************************************
@@ -21,7 +24,10 @@ CGuid::CGuid(int nPriority):CObject2D(nPriority)
 //*******************************************************************************************************************************************
 CGuid::~CGuid()
 {
-	m_pTexture = nullptr;		// テクスチャのポインタ
+	m_pTexture = nullptr;					// テクスチャのポインタ
+	m_Type = TEXTURETYPE::TYPE_NONE;		// テクスチャの種類
+	m_bAnimation = false;					// アニメーション用フラグ(trueの時にα値を上げる)
+
 }
 
 //*******************************************************************************************************************************************
@@ -51,6 +57,13 @@ void CGuid::Uninit()
 //*******************************************************************************************************************************************
 void CGuid::Update()
 {
+	if (m_Type == TEXTURETYPE::TYPE_RETURNTITLE)
+	{// タイトルに戻るテクスチャの場合
+
+		// アニメーション処理
+		Animation();
+	}
+
 	// 2Dオブジェクトの更新処理
 	CObject2D::Update();
 }
@@ -95,5 +108,36 @@ CGuid* CGuid::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTURETYPE t
 	// テクスチャの設定
 	pGuid->BindTexture(pGuid->m_pTexture);
 
+	pGuid->m_Type = type;	// 種類設定
+
 	return pGuid;
+}
+
+//*******************************************************************************************************************************************
+// アニメーション処理
+//*******************************************************************************************************************************************
+void CGuid::Animation()
+{
+	D3DXCOLOR CurrentColor = GetColor();
+
+	if (CurrentColor.a <= MIN_POLYGONCOLOR)
+	{
+		m_bAnimation = true;
+	}
+	if (CurrentColor.a >= 1.0f)
+	{
+		m_bAnimation = false;
+	}
+
+	if (m_bAnimation)
+	{
+		CurrentColor.a += POLYGONANIM_SPEED;
+	}
+	else if (!m_bAnimation)
+	{
+		CurrentColor.a -= POLYGONANIM_SPEED;
+	}
+
+	SetColor(CurrentColor);
+
 }

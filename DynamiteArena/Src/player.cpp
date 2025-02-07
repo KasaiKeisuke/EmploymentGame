@@ -220,9 +220,6 @@ void CPlayer::Move()
 	// TPS視点のプレイヤー移動
 	//*******************************************************************************************
 
-	// シングルトンインスタンスの取得
-	CManager& manager = CManager::GetInstance();
-
 	// ローカル変数宣言
 	D3DXVECTOR3 CurrentPos = GetPos();						// プレイヤーの現在の位置
 	D3DXVECTOR3 CurrentRot = GetRot();						// プレイヤーの現在の向き

@@ -87,9 +87,9 @@ CScene* CScene::Create(MODE mode)
 		//******************************************
 		// 選択肢
 		//******************************************
-		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_TUTORIAL);
+		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 150.0f, 100.0f, CMenu::MENUTYPE::MENU_TUTORIAL);
 
-		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_GAME);
+		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + 150.0f, 0.0f), 150.0f, 100.0f, CMenu::MENUTYPE::MENU_GAME);
 
 		//******************************************
 		// タイトルロゴ
@@ -118,7 +118,7 @@ CScene* CScene::Create(MODE mode)
 		//******************************************
 		// ガイド
 		//******************************************
-		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 600.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 250.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
 
 		break;
 	case MODE_GAME:

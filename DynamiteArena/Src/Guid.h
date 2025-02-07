@@ -34,6 +34,17 @@ public:
 	static CGuid* Create(D3DXVECTOR3 pos, float fWidth, float fHeight,TEXTURETYPE type);		// 生成処理
 
 private:
+	void Animation();																			// アニメーション処理
+
 	LPDIRECT3DTEXTURE9 m_pTexture;																// テクスチャのポインタ
+
+	TEXTURETYPE m_Type;																			// テクスチャの種類
+
+	bool m_bAnimation;																			// アニメーション用フラグ
+
 };
+
+static const float MIN_POLYGONCOLOR = 0.1f;														// 色の最小値
+static const float POLYGONANIM_SPEED = 0.01f;													// アニメーションの速度
+
 #endif

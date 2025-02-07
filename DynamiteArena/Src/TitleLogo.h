@@ -31,6 +31,7 @@ private:
 
 	bool m_bAnimation;																// アニメーション用フラグ
 };
+
 static const float MIN_COLOR = 0.1f;												// 色の最小値
 static const float ANIM_SPEED = 0.01f;												// アニメーションの速度
 #endif
