@@ -63,6 +63,9 @@ void CCursor::Uninit()
 	CObject2D::Uninit();
 
 	Release();
+
+	m_InputKeyboard = nullptr;
+	m_InputJoypad = nullptr;
 }
 
 //*******************************************************************************************************************************************
@@ -121,7 +124,7 @@ void CCursor::Select()
 	float CurrentWidth = GetWidth();	// •Žæ“¾
 	float CurrentHeight = GetHeight();	// ‚‚³Žæ“¾
 
-	if (!m_InputKeyboard->GetPress(DIK_UP) && !m_InputKeyboard->GetPress(DIK_DOWN) || m_InputJoypad->GetPress(CInputJoypad::JOYKEY_UP) || m_InputJoypad->GetPress(CInputJoypad::JOYKEY_DOWN))
+	if (!m_InputKeyboard->GetPress(DIK_UP) && !m_InputKeyboard->GetPress(DIK_DOWN) || !m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP) || !m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
 	{
 		m_bCursorMove = false;
 	}

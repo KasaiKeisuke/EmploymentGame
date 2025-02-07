@@ -1,37 +1,33 @@
 //*******************************************************************************************************************************************
 //
-// ダイナマイトアリーナ(bg.cpp)
+// ダイナマイトアリーナ(Guid.cpp)
 // Author : Kasai Keisuke
 //
 //*******************************************************************************************************************************************
 
 // include
-#include "bg.h"
-#include "manager.h"
-
-// 静的メンバ変数初期化
-LPDIRECT3DTEXTURE9 CBg::m_pTexture = nullptr;	// テクスチャ
+#include "Guid.h"
 
 //*******************************************************************************************************************************************
 // コンストラクタ
 //*******************************************************************************************************************************************
-CBg::CBg(int nPriority):CObject2D(nPriority)
+CGuid::CGuid(int nPriority):CObject2D(nPriority)
 {
-	m_pTexture = nullptr;	// テクスチャ
+	m_pTexture = nullptr;		// テクスチャのポインタ
 }
 
 //*******************************************************************************************************************************************
 // デストラクタ
 //*******************************************************************************************************************************************
-CBg::~CBg()
+CGuid::~CGuid()
 {
-
+	m_pTexture = nullptr;		// テクスチャのポインタ
 }
 
 //*******************************************************************************************************************************************
 // 初期化処理
 //*******************************************************************************************************************************************
-HRESULT CBg::Init()
+HRESULT CGuid::Init()
 {
 	// 2Dオブジェクトの初期化処理
 	CObject2D::Init();
@@ -42,85 +38,62 @@ HRESULT CBg::Init()
 //*******************************************************************************************************************************************
 // 終了処理
 //*******************************************************************************************************************************************
-void CBg::Uninit()
+void CGuid::Uninit()
 {
 	// 2Dオブジェクトの終了処理
 	CObject2D::Uninit();
 
-	// 背景の破棄
 	Release();
 }
 
 //*******************************************************************************************************************************************
 // 更新処理
 //*******************************************************************************************************************************************
-void CBg::Update()
+void CGuid::Update()
 {
 	// 2Dオブジェクトの更新処理
 	CObject2D::Update();
 }
 
 //*******************************************************************************************************************************************
-// 更新処理
+// 描画処理
 //*******************************************************************************************************************************************
-void CBg::Draw()
+void CGuid::Draw()
 {
 	// 2Dオブジェクトの描画処理
 	CObject2D::Draw();
 }
 
 //*******************************************************************************************************************************************
-// 更新処理
+// 生成処理
 //*******************************************************************************************************************************************
-CBg* CBg::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTYPE type)
+CGuid* CGuid::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTURETYPE type)
 {
-	CBg* pBg = new CBg();
+	// シングルトンインスタンスの取得
+	CManager& manager = CManager::GetInstance();
 
-	if (pBg != nullptr)
-	{
-		pBg->Init();
+	CGuid* pGuid = new CGuid();
 
-		// シングルトンインスタンスの取得
-		CManager& manager = CManager::GetInstance();
+	pGuid->Init();		// 初期化処理
 
-		switch (type)
-		{
-		case TYPE_TITLE:
-			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title000.png", &pBg->m_pTexture);
-			
-			pBg->SetObject2D(pos, D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f), fWidth, fHeight);		// 情報設定
+	pGuid->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
 
-			break;
-		case TYPE_TUTORIAL:
-			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
+	switch (type)
+	{// テクスチャの読み込み
+	case TEXTURETYPE::TYPE_STARTGAME:
 
-			pBg->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
+		D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\guid000.png", &pGuid->m_pTexture);
 
-			break;
+		break;
+	case TEXTURETYPE::TYPE_RETURNTITLE:
 
-		case TYPE_GAME:
-			break;
-		case TYPE_CLEARRESULT:
-			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
+		D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\guid001.png", &pGuid->m_pTexture);
 
-			pBg->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
-
-			break;
-		case TYPE_FAILRESULT:
-			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
-
-			pBg->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
-
-			break;
-		}
-
-		pBg->BindTexture(m_pTexture);
-	
-		return pBg;
+		break;
 	}
-	return nullptr;
+
+	// テクスチャの設定
+	pGuid->BindTexture(pGuid->m_pTexture);
+
+	return pGuid;
 }

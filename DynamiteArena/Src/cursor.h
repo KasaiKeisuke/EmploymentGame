@@ -40,7 +40,7 @@ private:
 	bool m_bCursorMove;															// カーソルが動いているかどうか
 	bool m_bScale;																// ポリゴンの拡縮用フラグ
 };
-static const float MIN_SCALE = 100.0f;											// 最小スケール
-static const float MAX_SCALE = 120.0f;											// 最大スケール
+static const float MIN_SCALE = 50.0f;											// 最小スケール
+static const float MAX_SCALE = 70.0f;											// 最大スケール
 
 #endif

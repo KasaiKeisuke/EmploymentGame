@@ -282,7 +282,7 @@ void CPlayer::Move()
 		m_Move.z = 0.0f;
 	}
 	
-	Motion(CurrentRot);
+	//Motion(CurrentRot);
 
 	for (int nCntPriority = 0; nCntPriority < DRAW_PRIORITY; nCntPriority++)
 	{

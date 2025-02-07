@@ -15,6 +15,7 @@
 #include "TitleLogo.h"
 #include "cursor.h"
 #include "menu.h"
+#include "Guid.h"
 
 #include "manager.h"
 
@@ -78,21 +79,47 @@ CScene* CScene::Create(MODE mode)
 	case MODE_TITLE:
 		pScene = new CTitle();
 
+		//******************************************
+		// îwåi
+		//******************************************
 		CBg::Create(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, CBg::TEXTYPE::TYPE_TITLE);
 
+		//******************************************
+		// ëIëéà
+		//******************************************
 		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_TUTORIAL);
 
 		CMenu::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + 150.0f, 0.0f), 100.0f, 100.0f, CMenu::MENUTYPE::MENU_GAME);
 
+		//******************************************
+		// É^ÉCÉgÉãÉçÉS
+		//******************************************
 		CTitleLogo::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 370.0f, 0.0f), 500.0f, 100.0f);
 
-		CCursor::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f - 250.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 100.0f, 100.0f);
+		//******************************************
+		// ÉJÅ[É\Éã
+		//******************************************
+		CCursor::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f - 250.0f, SCREEN_HEIGHT / 2.0f - 150.0f, 0.0f), 50.0f, 50.0f);
+
+		//******************************************
+		// ÉKÉCÉh
+		//******************************************
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 150.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_STARTGAME);
+
 		break;
 	case MODE_TUTORIAL:
 		pScene = new CTutorial();
 
+		//******************************************
+		// îwåi
+		//******************************************
 		CBg::Create(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, CBg::TEXTYPE::TYPE_TUTORIAL);
 	
+		//******************************************
+		// ÉKÉCÉh
+		//******************************************
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
+
 		break;
 	case MODE_GAME:
 		pScene = new CGame();
@@ -101,13 +128,29 @@ CScene* CScene::Create(MODE mode)
 	case MODE_CLEARRESULT:
 		pScene = new CResult();
 
+		//******************************************
+		// îwåi
+		//******************************************
 		CBg::Create(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, CBg::TEXTYPE::TYPE_CLEARRESULT);
+
+		//******************************************
+		// ÉKÉCÉh
+		//******************************************
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
 
 		break;
 	case MODE_FAILRESULT:
 		pScene = new CResult();
 
+		//******************************************
+		// îwåi
+		//******************************************
 		CBg::Create(D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, CBg::TEXTYPE::TYPE_FAILRESULT);
+
+		//******************************************
+		// ÉKÉCÉh
+		//******************************************
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
 
 		break;
 	}
