@@ -89,7 +89,7 @@ CBg* CBg::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTYPE type)
 			// テクスチャの読み込み
 			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title000.png", &pBg->m_pTexture);
 			
-			pBg->SetObject2D(pos, D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f), fWidth, fHeight);		// 情報設定
+			pBg->SetObject2D(pos, D3DXCOLOR(0.6f, 0.6f, 0.6f, 0.6f), fWidth, fHeight);		// 情報設定
 
 			break;
 		case TYPE_TUTORIAL:
@@ -104,14 +104,14 @@ CBg* CBg::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, TEXTYPE type)
 			break;
 		case TYPE_CLEARRESULT:
 			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
+			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\result000.png", &pBg->m_pTexture);
 
 			pBg->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
 
 			break;
 		case TYPE_FAILRESULT:
 			// テクスチャの読み込み
-			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\title001.png", &pBg->m_pTexture);
+			D3DXCreateTextureFromFile(manager.GetRenderer()->GetDevice(), "data\\TEXTURE\\result001.png", &pBg->m_pTexture);
 
 			pBg->SetObject2D(pos, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fWidth, fHeight);		// 情報設定
 

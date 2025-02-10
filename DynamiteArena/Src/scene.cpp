@@ -118,7 +118,7 @@ CScene* CScene::Create(MODE mode)
 		//******************************************
 		// ÉKÉCÉh
 		//******************************************
-		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 600.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 250.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 600.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 250.0f, 130.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
 
 		break;
 	case MODE_GAME:
@@ -150,7 +150,7 @@ CScene* CScene::Create(MODE mode)
 		//******************************************
 		// ÉKÉCÉh
 		//******************************************
-		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f + 400.0f, SCREEN_HEIGHT / 2.0f + 400.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
+		CGuid::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + 150.0f, 0.0f), 200.0f, 150.0f, CGuid::TEXTURETYPE::TYPE_RETURNTITLE);
 
 		break;
 	}

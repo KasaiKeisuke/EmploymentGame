@@ -57,9 +57,6 @@ void CNumber::Uninit()
 //*******************************************************************************************************************************************
 void CNumber::Update()
 {
-	// シングルトンインスタンスの取得
-	CManager& manager = CManager::GetInstance();
-
 	// 2Dオブジェクトの更新処理
 	CObject2D::Update();
 }
@@ -78,9 +75,6 @@ void CNumber::Draw()
 //*******************************************************************************************************************************************
 CNumber* CNumber::Create(D3DXVECTOR3 pos)
 {
-	// シングルトンインスタンスの取得
-	CManager& manager = CManager::GetInstance();
-
 	CNumber* pNumber = new CNumber;
 
 	pNumber->Init();	 // 初期化処理

@@ -44,7 +44,7 @@ private:
 
 };
 
-static const float MIN_POLYGONCOLOR = 0.1f;														// 色の最小値
+static const float MIN_POLYGONCOLOR = 0.5f;														// 色の最小値
 static const float POLYGONANIM_SPEED = 0.01f;													// アニメーションの速度
 
 #endif
