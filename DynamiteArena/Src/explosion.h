@@ -31,6 +31,7 @@ public:
 	static const int DRAW_COUNT = 60;																// 表示させる時間
 	static const int FILE_PATH = 256;																// ファイルパス
 	static const int TIME_LAG = 25;																	// モーションを切り替えるまでの時間
+	static const int EXPLOSION_SIZE = 20;															// 爆発の大きさ
 
 private:
 	void Turn();																					// 回転処理
