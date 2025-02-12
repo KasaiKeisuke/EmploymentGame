@@ -203,10 +203,10 @@ bool CItem::CollisionItem(D3DXVECTOR3* pos, D3DXVECTOR3 size, int nType)
 			switch (m_Type)
 			{
 			case TYPE_POWERUP:
-				m_pParamManager->AddParam(600, TYPE_POWERUP);	// ‹­‰»ŽžŠÔ10•b
+				m_pParamManager->AddParam(POWERUP_TIME, TYPE_POWERUP);	// ˆê’èŽžŠÔ”š”­—Í‹­‰»
 				break;
 			case TYPE_SPEEDUP:
-				m_pParamManager->AddParam(300, TYPE_SPEEDUP);	// ‹­‰»ŽžŠÔ5•b
+				m_pParamManager->AddParam(SPEEDUP_TIME, TYPE_SPEEDUP);	// ˆê’èŽžŠÔˆÚ“®‘¬“xã¸
 				break;
 			case TYPE_ENEMYKILL:
 				// “ÁŽêˆ—‚ð‚±‚±‚É’Ç‰Á‰Â”\

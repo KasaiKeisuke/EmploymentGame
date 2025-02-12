@@ -40,6 +40,9 @@ public:
 	int GetItemType();																				// アイテムの種類取得
 
 	static void Load();																				// ロード処理																							// アイテムのロード処理
+
+	static const int POWERUP_TIME = 480;															// 爆発力を強化する時間
+	static const int SPEEDUP_TIME = 300;															// 移動速度を強化する時間
 private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;															// テクスチャ
 
