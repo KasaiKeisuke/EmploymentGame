@@ -120,7 +120,7 @@ void CParamManager::AddParam(int nCnt, int nType)
 		nCurrentPower += 1; // ”š”­—Í‚ğ1‘‰Á
 		break;
 	case 2:
-		fCurrentSpeed += 1.0f; // ˆÚ“®‘¬“x‚ğ0.5‘‰Á
+		fCurrentSpeed += 0.5f; // ˆÚ“®‘¬“x‚ğ0.5‘‰Á
 		break;
 	}
 
