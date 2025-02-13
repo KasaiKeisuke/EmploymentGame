@@ -26,6 +26,12 @@ public:
 	bool CollisionEnemy(D3DXVECTOR3* pos, D3DXVECTOR3 size, int nType);							// 当たり判定(敵と他のオブジェクト)
 
 	static void Load();																			// ロード処理
+
+	static const int DEATH_COUNT = 60;															// 死亡演出の時間
+	static const int KILL_POINT = 100;															// 撃破ポイント
+
+	static const int MAX_WORD = 128;															// 最大文字数
+	static const int MAX_SYMBOL = 4;															// イコールなどを保存する用の文字数
 private:
 	void Move();																				// 移動処理
 	void Death(int nCnt);																		// 死亡判定
