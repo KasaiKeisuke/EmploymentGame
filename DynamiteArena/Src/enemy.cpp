@@ -71,7 +71,7 @@ void CEnemy::Uninit()
 void CEnemy::Update()
 {
 	if (m_nLife > 0)
-	{
+	{// 敵が生きているとき
 		// Xファイルオブジェクトの更新処理
 		CObjectX::Update();
 
@@ -80,14 +80,14 @@ void CEnemy::Update()
 	else
 	{// 敵が死んだとき
 		if (m_nCnt > 0)
-		{
+		{// 死亡演出中
 			m_nCnt--;
 
 			SetColor(D3DXCOLOR(1.0f,1.0f,1.0f,1.0f));
 		}
 		else
 		{// 死亡演出終了後
-			CScore::Add(100);	// スコア加算
+			CScore::Add(KILL_POINT);	// スコア加算
 
 			CEnemy::Uninit();	// 終了処理
 		}
@@ -171,8 +171,9 @@ bool CEnemy::CollisionEnemy(D3DXVECTOR3* pos, D3DXVECTOR3 size, int nType)
 void CEnemy::Load()
 {
 	FILE* pFile = nullptr;
-	char aString[128] = {};
-	char aSymbol[4] = {};
+	char aString[MAX_WORD] = {};
+	char aSymbol[MAX_SYMBOL] = {};
+
 	D3DXVECTOR3 Pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 位置
 	D3DXVECTOR3 Move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	// 移動速度
 
@@ -330,7 +331,7 @@ void CEnemy::Move()
 				if (m_bHit)
 				{
 					m_nLife--;	// 体力を減らす
-					Death(60);
+					Death(DEATH_COUNT);
 				}
 			}
 		}
@@ -355,22 +356,22 @@ void CEnemy::Death(int nCnt)
 //*******************************************************************************************************************************************
 void CEnemy::Motion(D3DXVECTOR3 &rot)
 {
-	if (rot.z <= -0.5f)
+	if (rot.z <= -ENEMY_MOTIONROT)
 	{
 		m_bRot = false;
 	}
-	else if (rot.z >= 0.5f)
+	else if (rot.z >= ENEMY_MOTIONROT)
 	{
 		m_bRot = true;
 	}
 
 	if (m_bRot)
 	{
-		rot.z -= 0.01f;
+		rot.z -= ENEMY_MOTIONSPEED;
 	}
 	else if (!m_bRot)
 	{
-		rot.z += 0.01f;
+		rot.z += ENEMY_MOTIONSPEED;
 	}
 
 }

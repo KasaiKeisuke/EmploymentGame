@@ -43,4 +43,6 @@ private:
 };
 
 static const float ENEMY_SPEED = 0.5f;															// 敵の移動速度
+static const float ENEMY_MOTIONROT = 0.5f;														// モーションの角度
+static const float ENEMY_MOTIONSPEED = 0.01f;													// モーション速度
 #endif
