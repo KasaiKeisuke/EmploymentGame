@@ -29,6 +29,7 @@ public:
 private:
 	void Move();																				// 移動処理
 	void Death(int nCnt);																		// 死亡判定
+	void Motion(D3DXVECTOR3 &rot);																// モーション処理
 
 	int m_nCnt;
 
@@ -38,6 +39,7 @@ private:
 	bool m_bHit;																				// 被弾したかどうか
 	bool m_bHitObstacle;																		// 障害物に当たったかどうか(ブロックや壁)
 	bool m_bMoveRot;																			// 進行方向判定用フラグ
+	bool m_bRot;																				// モーション用フラグ
 };
 
 static const float ENEMY_SPEED = 0.5f;															// 敵の移動速度

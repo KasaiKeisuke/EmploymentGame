@@ -200,7 +200,7 @@ bool CInputKeyboard::GetRepeat(int nKey)
 		}
 		m_nPressTime++;
 
-		if (m_nPressTime >= 60)
+		if (m_nPressTime >= MAX_PRESSTIME)
 		{// ‰Ÿ‚µ‘±‚¯‚Äˆê’èŽžŠÔŒo‚Á‚½‚ç
 			m_nPressTime = 0;
 
@@ -332,7 +332,7 @@ bool CInputJoypad::GetRepeat(JOYKEY key)
 
 		m_nPressTime++;
 
-		if (m_nPressTime >= 5)
+		if (m_nPressTime >= MAX_PRESSTIME)
 		{// ‰Ÿ‚µ‘±‚¯‚Äˆê’èŽžŠÔŒo‚Á‚½‚ç
 			m_nPressTime = 0;
 

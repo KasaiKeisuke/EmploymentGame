@@ -22,10 +22,12 @@ class CInput
 {
 public:
 	CInput();												// コンストラクタ
-	~CInput();										// デストラクタ
+	~CInput();												// デストラクタ
 	virtual HRESULT Init(HINSTANCE hInstance, HWND hWnd);	// 初期化処理
 	virtual void Uninit();									// 終了処理
 	virtual void Update() = 0;								// 更新処理(入力端末ごとに必要)
+
+	const static int MAX_PRESSTIME = 5;						// 最大の長押し時間	
 protected:
 	static LPDIRECTINPUT8 m_pInput;							// DirectInputオブジェクトへのポインタ
 	LPDIRECTINPUTDEVICE8 m_pDevice;							// 入力デバイスのポインタ

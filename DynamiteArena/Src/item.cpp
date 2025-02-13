@@ -176,7 +176,7 @@ CItem* CItem::Create(D3DXVECTOR3 pos, float fWidth, float fHeight, float fDepth,
 }
 
 //*******************************************************************************************************************************************
-// 生成処理
+// 当たり判定
 //*******************************************************************************************************************************************
 bool CItem::CollisionItem(D3DXVECTOR3* pos, D3DXVECTOR3 size, int nType)
 {
@@ -202,11 +202,15 @@ bool CItem::CollisionItem(D3DXVECTOR3* pos, D3DXVECTOR3 size, int nType)
 
 			switch (m_Type)
 			{
-			case TYPE_POWERUP:
+			case TYPE_POWERUP:		// 爆弾マークのアイテム
+
 				m_pParamManager->AddParam(POWERUP_TIME, TYPE_POWERUP);	// 一定時間爆発力強化
+
 				break;
-			case TYPE_SPEEDUP:
+			case TYPE_SPEEDUP:		// 靴マークのアイテム
+
 				m_pParamManager->AddParam(SPEEDUP_TIME, TYPE_SPEEDUP);	// 一定時間移動速度上昇
+
 				break;
 			case TYPE_ENEMYKILL:
 				// 特殊処理をここに追加可能
