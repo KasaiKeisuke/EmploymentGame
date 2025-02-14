@@ -124,12 +124,12 @@ void CCursor::Select()
 	float CurrentWidth = GetWidth();	// •Žæ“¾
 	float CurrentHeight = GetHeight();	// ‚‚³Žæ“¾
 
-	if (!m_InputKeyboard->GetPress(DIK_UP) && !m_InputKeyboard->GetPress(DIK_DOWN) || !m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP) || !m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
+	if (!m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP) || !m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
 	{
 		m_bCursorMove = false;
 	}
 
-	if (m_InputKeyboard->GetPress(DIK_UP) || m_InputKeyboard->GetPress(DIK_DOWN) || m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP) || m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
+	if (m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP) || m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
 	{
 		m_bCursorMove = true;
 	}
@@ -162,12 +162,12 @@ void CCursor::Select()
 	}
 	else if (m_bCursorMove)
 	{
-		if (m_InputKeyboard->GetRepeat(DIK_UP) || m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP))
+		if (m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_UP))
 		{
 			m_nSelect--;
 		}
 
-		if (m_InputKeyboard->GetRepeat(DIK_DOWN) || m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
+		if (m_InputJoypad->GetRepeat(CInputJoypad::JOYKEY_DOWN))
 		{
 			m_nSelect++;
 		}
@@ -198,7 +198,7 @@ void CCursor::Select()
 	}
 
 	// ‰æ–Ê‘JˆÚˆ—
-	if (m_InputKeyboard->GetTrigger(DIK_RETURN) || m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_A))
+	if (m_InputJoypad->GetTrigger(CInputJoypad::JOYKEY_A))
 	{
 		switch (m_nSelect)
 		{

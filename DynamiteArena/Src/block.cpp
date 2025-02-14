@@ -391,12 +391,12 @@ void CBlock::DecideToPlaceItem(D3DXVECTOR3 pos)
 
 		std::random_device rnd;  // 非決定的な乱数生成器
 		std::mt19937 mt(rnd());  // メルセンヌツイスターの乱数生成器
-		std::uniform_int_distribution<> rand(1, MAX_NUM);  // 1か2のランダム
+		std::uniform_int_distribution<> rand(1, MAX_NUM); 
 
 		int nRand = rand(mt);
 
 		if (nRand == 1)
-		{
+		{// ランダムの結果が生成する番号だったとき
 			nNumAppearItem++;
 
 			// アイテムの種類を決定
